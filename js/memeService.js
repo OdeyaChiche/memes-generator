@@ -9,9 +9,14 @@ let gMeme = {
   selectedLineIdx: 0,
   lines: [
     {
-      txt: 'I sometimes eat Falafel',
-      size: 20,
+      txt: 'Add Text Here',
+      size: 30,
       color: 'red',
+    },
+    {
+      txt: 'Add Another Text Here',
+      size: 30,
+      color: 'blue',
     },
   ],
 }
@@ -19,4 +24,44 @@ let gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
 function getMeme() {
   return gMeme
+}
+
+function setImg(imgId) {
+  let elGallery = document.querySelector('.gallery')
+  gMeme.selectedImgId = imgId
+
+  renderMeme()
+  elGallery.classList.add('hidden')
+}
+
+function setLineTxt(txt) {
+  gMeme.lines[gMeme.selectedLineIdx].txt = txt
+  console.log(gMeme.lines[gMeme.selectedLineIdx].txt)
+
+  renderMeme()
+}
+
+function renderTextLines(){
+
+    for(let i=0; i<gMeme.lines.length; i++){
+        let txt=gMeme.lines[i].txt
+        drawText(txt, 10, 50)
+    }
+}
+
+function drawText(text, x, y) {
+  let size = gMeme.lines[gMeme.selectedLineIdx].size
+
+  gCtx.lineWidth = 1
+  gCtx.fillStyle = gMeme.lines[gMeme.selectedLineIdx].color
+  gCtx.font = `${size}px Arial`
+
+  gCtx.fillText(text, x, y)
+  gCtx.strokeText(text, x, y)
+}
+
+function changeTextColor(value) {
+  gMeme.lines[gMeme.selectedLineIdx].color = value
+
+  renderMeme()
 }
