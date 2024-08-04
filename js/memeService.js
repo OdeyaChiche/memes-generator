@@ -11,12 +11,7 @@ let gMeme = {
     {
       txt: 'Add Text Here',
       size: 30,
-      color: 'red',
-    },
-    {
-      txt: 'Add Another Text Here',
-      size: 30,
-      color: 'blue',
+      color: 'black',
     },
   ],
 }
@@ -36,17 +31,8 @@ function setImg(imgId) {
 
 function setLineTxt(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
-  console.log(gMeme.lines[gMeme.selectedLineIdx].txt)
 
   renderMeme()
-}
-
-function renderTextLines(){
-
-    for(let i=0; i<gMeme.lines.length; i++){
-        let txt=gMeme.lines[i].txt
-        drawText(txt, 10, 50)
-    }
 }
 
 function drawText(text, x, y) {
@@ -61,7 +47,9 @@ function drawText(text, x, y) {
 }
 
 function changeTextColor(value) {
+    console.log(gMeme.selectedLineIdx);
   gMeme.lines[gMeme.selectedLineIdx].color = value
 
   renderMeme()
 }
+

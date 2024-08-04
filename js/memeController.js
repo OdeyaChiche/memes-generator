@@ -46,6 +46,17 @@ function renderGallery() {
   elGallery.innerHTML = strHtml
 }
 
+function renderTextLines() {
+  let startX = 10
+  let startY = 50
+
+  for (let i = 0; i < gMeme.lines.length; i++) {
+    let txt = gMeme.lines[i].txt
+    drawText(txt, startX, startY)
+    startY += 50
+  }
+}
+
 function onImgSelect(imgId) {
   setImg(imgId)
 }
@@ -65,14 +76,28 @@ function onChangeColor(value) {
   changeTextColor(value)
 }
 
-function increaseFont(){
-  gMeme.lines[gMeme.selectedLineIdx].size+=5
+function increaseFont() {
+  gMeme.lines[gMeme.selectedLineIdx].size += 5
 
-    renderMeme()
+  renderMeme()
 }
 
-function decreaseFont(){
-    gMeme.lines[gMeme.selectedLineIdx].size-=5
-  
-      renderMeme()
-  }
+function decreaseFont() {
+  gMeme.lines[gMeme.selectedLineIdx].size -= 5
+
+  renderMeme()
+}
+
+function onAddLine() {
+  gMeme.lines.push({
+    txt: 'Add Text Here',
+    size: 30,
+    color: 'black',
+  })
+
+  renderTextLines()
+  gMeme.selectedLineIdx++
+
+  const elText= document.querySelector('.line-text')
+  elText.value=''
+}
